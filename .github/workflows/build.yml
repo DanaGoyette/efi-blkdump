@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Check out project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install build dependencies
         run: |
@@ -53,7 +53,7 @@ jobs:
         run: PATH="$GITHUB_WORKSPACE/.venv/bin:$PATH" ./build.sh ALL
 
       - name: Upload EFI binaries
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: efi-blkdump
           path: Artifacts/*.efi
