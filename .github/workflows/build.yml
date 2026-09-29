@@ -38,6 +38,10 @@ jobs:
           git -C edk2 remote add origin https://github.com/tianocore/edk2.git
           git -C edk2 fetch --depth 1 origin "$EDK2_REF"
           git -C edk2 checkout --detach FETCH_HEAD
+          git -C edk2 submodule update --init --depth 1 -- \
+            BaseTools/Source/C/BrotliCompress/brotli \
+            MdeModulePkg/Library/BrotliCustomDecompressLib/brotli \
+            MdePkg/Library/MipiSysTLib/mipisyst
 
       - name: Install EDK II Python requirements
         run: |
