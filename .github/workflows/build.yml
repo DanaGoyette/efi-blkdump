@@ -1,0 +1,57 @@
+name: Build EFI applications
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            ca-certificates \
+            git \
+            uuid-dev \
+            nasm \
+            acpica-tools \
+            python3 \
+            python3-venv \
+            gcc-aarch64-linux-gnu \
+            binutils-aarch64-linux-gnu
+
+      - name: Set up pinned EDK II checkout
+        env:
+          EDK2_REF: ea0ca89f7bd9b3f25481d6ab87f17808b0fd64fa
+        run: |
+          git init edk2
+          git -C edk2 remote add origin https://github.com/tianocore/edk2.git
+          git -C edk2 fetch --depth 1 origin "$EDK2_REF"
+          git -C edk2 checkout --detach FETCH_HEAD
+
+      - name: Install EDK II Python requirements
+        run: |
+          python3 -m venv .venv
+          .venv/bin/python -m pip install --upgrade pip
+          .venv/bin/python -m pip install -r edk2/pip-requirements.txt
+
+      - name: Build all architectures and configurations
+        run: PATH="$GITHUB_WORKSPACE/.venv/bin:$PATH" ./build.sh ALL
+
+      - name: Upload EFI binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: efi-blkdump
+          path: Artifacts/*.efi
+          if-no-files-found: error
+          retention-days: 7
