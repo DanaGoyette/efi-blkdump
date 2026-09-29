@@ -52,10 +52,34 @@ jobs:
       - name: Build all architectures and configurations
         run: PATH="$GITHUB_WORKSPACE/.venv/bin:$PATH" ./build.sh ALL
 
-      - name: Upload EFI binaries
+      - name: Upload X64 debug EFI
         uses: actions/upload-artifact@v7
         with:
-          name: efi-blkdump
-          path: Artifacts/*.efi
+          path: Artifacts/BlkDump-x64-debug.efi
+          archive: false
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Upload X64 release EFI
+        uses: actions/upload-artifact@v7
+        with:
+          path: Artifacts/BlkDump-x64-release.efi
+          archive: false
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Upload AARCH64 debug EFI
+        uses: actions/upload-artifact@v7
+        with:
+          path: Artifacts/BlkDump-aarch64-debug.efi
+          archive: false
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Upload AARCH64 release EFI
+        uses: actions/upload-artifact@v7
+        with:
+          path: Artifacts/BlkDump-aarch64-release.efi
+          archive: false
           if-no-files-found: error
           retention-days: 7
