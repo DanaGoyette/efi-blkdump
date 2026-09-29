@@ -1,0 +1,12 @@
+{
+  "files.associations": {
+    "*.dsc": "ini",
+    "*.dec": "ini",
+    "*.inf": "ini"
+  },
+  "C_Cpp.errorSquiggles": "enabled",
+  "edk2.path": "${workspaceFolder}/edk2",
+  "terminal.integrated.env.linux": {
+    "EDK2_DIR": "${workspaceFolder}/edk2"
+  }
+}

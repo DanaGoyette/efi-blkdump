@@ -1,0 +1,15 @@
+[Defines]
+  DEC_SPECIFICATION              = 0x0001001B
+  PACKAGE_NAME                   = BlkDumpPkg
+  PACKAGE_GUID                   = 1C7C3A90-0E2D-4D63-8B58-1C6C13B0F9A2
+  PACKAGE_VERSION                = 0.1
+
+[Includes]
+
+[Guids]
+
+[Ppis]
+
+[Protocols]
+
+[LibraryClasses]

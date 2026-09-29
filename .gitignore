@@ -1,0 +1,5 @@
+Artifacts/
+Build/
+Conf/
+*.log
+edk2/

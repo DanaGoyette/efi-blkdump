@@ -1,0 +1,113 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "EDK II: Build X64 (DEBUG)",
+      "type": "shell",
+      "command": "./build.sh X64 DEBUG",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "EDK2_DIR": "${config:edk2.path}"
+        },
+        "shell": {
+          "executable": "/bin/bash",
+          "args": ["-c"]
+        }
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": false
+      }
+    },
+    {
+      "label": "EDK II: Build X64 (RELEASE)",
+      "type": "shell",
+      "command": "./build.sh X64 RELEASE",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "EDK2_DIR": "${config:edk2.path}"
+        },
+        "shell": {
+          "executable": "/bin/bash",
+          "args": ["-c"]
+        }
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": false
+      }
+    },
+    {
+      "label": "EDK II: Build AARCH64 (DEBUG)",
+      "type": "shell",
+      "command": "./build.sh AARCH64 DEBUG",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "EDK2_DIR": "${config:edk2.path}"
+        },
+        "shell": {
+          "executable": "/bin/bash",
+          "args": ["-c"]
+        }
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": false
+      }
+    },
+    {
+      "label": "EDK II: Build AARCH64 (RELEASE)",
+      "type": "shell",
+      "command": "./build.sh AARCH64 RELEASE",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "EDK2_DIR": "${config:edk2.path}"
+        },
+        "shell": {
+          "executable": "/bin/bash",
+          "args": ["-c"]
+        }
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": false
+      }
+    },
+    {
+      "label": "EDK II: Build All",
+      "type": "shell",
+      "command": "./build.sh ALL",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "EDK2_DIR": "${config:edk2.path}"
+        },
+        "shell": {
+          "executable": "/bin/bash",
+          "args": ["-c"]
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": false
+      }
+    }
+  ]
+}
