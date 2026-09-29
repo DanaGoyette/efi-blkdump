@@ -33,5 +33,9 @@
   UefiRuntimeServicesTableLib|MdePkg/Library/UefiRuntimeServicesTableLib/UefiRuntimeServicesTableLib.inf
   UefiLib|MdePkg/Library/UefiLib/UefiLib.inf
 
+[BuildOptions]
+  GCC:DEBUG_GCC_X64_CC_FLAGS = -O0
+  GCC:DEBUG_GCC_X64_DLINK_FLAGS = -O0
+
 [Components]
   BlkDump/BlkDump.inf

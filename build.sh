@@ -4,13 +4,11 @@ set -euo pipefail
 script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 # Use the checkout at ./edk2 by default; it may be a directory or a symlink.
 edk2_dir=${EDK2_DIR:-"$script_dir/edk2"}
-architecture=${1:-X64}
+architecture=${1:-ALL}
 build_target=${2:-RELEASE}
 
-if [[ "${1:-}" == ALL ]]; then
-  "$0" X64 DEBUG
+if [[ "$architecture" == ALL ]]; then
   "$0" X64 RELEASE
-  "$0" AARCH64 DEBUG
   "$0" AARCH64 RELEASE
   exit 0
 fi
@@ -55,7 +53,11 @@ build -p BlkDumpPkg/BlkDumpPkg.dsc \
   -b "$build_target"
 
 output="$edk2_dir/Build/BlkDumpPkg/${build_target}_${toolchain}/${architecture}/BlkDump/BlkDump/OUTPUT/BlkDump.efi"
-artifact="$script_dir/Artifacts/BlkDump-${output_architecture,,}-${build_target,,}.efi"
+if [[ "$build_target" == DEBUG ]]; then
+  artifact="$script_dir/Artifacts/BlkDump-${output_architecture,,}-debug.efi"
+else
+  artifact="$script_dir/Artifacts/BlkDump-${output_architecture,,}.efi"
+fi
 mkdir -p "$script_dir/Artifacts"
 cp "$output" "$artifact"
 printf 'Wrote %s\n' "$artifact"

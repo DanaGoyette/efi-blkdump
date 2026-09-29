@@ -29,9 +29,12 @@ This project is intended for an EDK II environment with the standard `build` too
 2. Use the build wrapper:
 
 ```sh
-./build.sh X64 RELEASE
-./build.sh AARCH64 RELEASE
+# Build both release binaries (also the default with no arguments)
 ./build.sh ALL
+
+# Build a single architecture/configuration explicitly
+./build.sh X64 DEBUG
+./build.sh AARCH64 RELEASE
 ```
 
 To use a checkout elsewhere, set `EDK2_DIR` to its directory or symlink before
@@ -52,13 +55,13 @@ GCCNOLTO_AARCH64_PREFIX=aarch64-linux-gnu- build -p BlkDumpPkg/BlkDumpPkg.dsc -a
 
 The output EFI binary will be created under a `Build/BlkDumpPkg/.../` directory. On an x86-64 host, the AARCH64 build requires an `aarch64-linux-gnu-gcc` cross compiler and its binutils in `PATH`. Set `GCCNOLTO_AARCH64_PREFIX` so EDK II selects that compiler; the host CPU does not need to match the target architecture. The EDK II target name is `AARCH64`, while the copied artifacts use `aarch64`.
 
-The VS Code tasks copy the binaries to `Artifacts/` with architecture and build mode in their names:
+The release builds are copied to `Artifacts/` with short architecture names. Explicit debug builds keep a `-debug` suffix:
 
 ```text
+BlkDump-x64.efi
+BlkDump-aarch64.efi
 BlkDump-x64-debug.efi
-BlkDump-x64-release.efi
 BlkDump-aarch64-debug.efi
-BlkDump-aarch64-release.efi
 ```
 
 ## Run from the UEFI shell
