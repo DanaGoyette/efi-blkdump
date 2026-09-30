@@ -11,7 +11,7 @@ and then use standard Linux filesystem utilities to explore the image.
 
 ## Project layout
 
-File                | Usage
+File                        | Usage
 ----------------------------|------------------
 `BlkDump/BlkDump.c`         | application logic
 `BlkDump/BlkDump.inf`       | EDK2 module metadata
@@ -22,10 +22,11 @@ File                | Usage
 
 This project is intended for an EDK II environment with the standard `build` tool available.
 
-1. Check out or install an EDK II tree. Put it in this repository as 
-   `edk2/`, either as a directory or as a symlink to the checkout. 
-   This path is ignored by Git. 
-   Alternately, set `EDK2_DIR` to another checkout directory or symlink; when unset, the build wrapper assumes `edk2/` beside `build.sh`.
+1. Check out or install an EDK II tree. Put it in this repository as
+   `edk2/`, either as a directory or as a symlink to the checkout.
+   This path is ignored by Git.
+   Alternately, set `EDK2_DIR` to another checkout directory or symlink;
+   when unset, the build wrapper assumes `edk2/` beside `build.sh`.
 2. Use the build wrapper:
 
 ```sh
@@ -55,7 +56,7 @@ GCCNOLTO_AARCH64_PREFIX=aarch64-linux-gnu- build -p BlkDumpPkg/BlkDumpPkg.dsc -a
 
 The output EFI binary will be created under a `Build/BlkDumpPkg/.../` directory. On an x86-64 host, the AARCH64 build requires an `aarch64-linux-gnu-gcc` cross compiler and its binutils in `PATH`. Set `GCCNOLTO_AARCH64_PREFIX` so EDK II selects that compiler; the host CPU does not need to match the target architecture. The EDK II target name is `AARCH64`, while the copied artifacts use `aarch64`.
 
-The release builds are copied to `Artifacts/` with short architecture names. Explicit debug builds keep a `-debug` suffix:
+The builds are copied to `Artifacts/` with short architecture names. Explicit debug builds keep a `-debug` suffix:
 
 ```text
 BlkDump-x64.efi
@@ -70,16 +71,61 @@ BlkDump-aarch64-debug.efi
 2. Boot to the UEFI shell.
 3. List available block devices:
 
+Use `--list` to show a listing grouped by parent device, with human-readable sizes.
+
 ```text
-fs0:\> BlkDump.efi -l
-  0: whole disk, media id 0x726F6E73, block size 4096, io align 8, last LBA 0x3FFF, 67108864 bytes
-    path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)
-  1: logical partition, media id 0x726F6E73, block size 4096, io align 0, last LBA 0x83, 540672 bytes
-    path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(1,GPT,B7A12F2D-9578-6B04-3CBD-04A0A49BE489)
-...
- 91: logical partition, media id 0x726F6E73, block size 4096, io align 0, last LBA 0x7F, 524288 bytes
-    path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(91,GPT,F2B35C04-A3C3-4059-998D-B22B98ECA3AE)
+fs0:\> BlkDump-x64.efi -l
+Devices:
+   0: whole disk, RW, 100 GiB, block size 512 B
+      path: PciRoot(0x0)/Pci(0x1,0x2)/Pci(0x0,0x0)/NVMe(0x1,...)
+         2: partition, RW, 1 GiB
+            path: HD(1,GPT,...)
+         3: partition, RW, 2 GiB
+            path: HD(2,GPT,...)
+         4: partition, RW, 8 GiB
+            path: HD(3,GPT,...)
+         5: partition, RW, 88.9 GiB
+            path: HD(4,GPT,...)
+   1: whole disk, RW, 794.3 GiB, block size 512 B
+      path: PciRoot(0x0)/Pci(0x1,0x2)/Pci(0x0,0x0)/NVMe(0x2,...)
+         6: partition, RW, 794.3 GiB
+            path: HD(1,GPT,...)
+   7: whole disk, RW, 3.5 TiB, block size 512 B
+      path: PciRoot(0x0)/Pci(0x2,0x1)/Pci(0x0,0x0)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,...)
+         8: partition, RW, 127 MiB
+            path: HD(1,GPT,...)
+         ...
 ```
+
+Use `--list --verbose` to show full device paths and raw media details,
+including media ID, block size, I/O alignment, last LBA, and exact byte count.
+
+```text
+fs0:\> BlkDump-x64.efi -l -v
+Devices:
+   0: whole disk, RW, media id 0x0, block size 512
+      io align 4, last LBA 0xC7FFFFF, 107374182400 bytes
+      path: PciRoot(0x0)/Pci(0x1,0x2)/Pci(0x0,0x0)/NVMe(0x1,...)
+   1: whole disk, RW, media id 0x1900000000, block size 512
+      io align 4, last LBA 0x63481AAF, 852822941696 bytes
+      path: PciRoot(0x0)/Pci(0x1,0x2)/Pci(0x0,0x0)/NVMe(0x2,...)
+   2: partition, RW, media id 0xC600000000, block size 512
+      io align 0, last LBA 0x2197FF, 1127219200 bytes
+      path: PciRoot(0x0)/Pci(0x1,0x2)/Pci(0x0,0x0)/NVMe(0x1,...)/HD(1,GPT,...)
+   ...
+   6: partition, RW, media id 0x1600000000, block size 512
+      io align 0, last LBA 0x634817DD, 852822572032 bytes
+      path: PciRoot(0x0)/Pci(0x1,0x2)/Pci(0x0,0x0)/NVMe(0x2,...)/HD(1,GPT,...)
+   7: whole disk, RW, media id 0xC600000000, block size 512
+      io align 4, last LBA 0x1BF1F72AF, 3840755982336 bytes
+      path: PciRoot(0x0)/Pci(0x2,0x1)/Pci(0x0,0x0)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,...)
+   8: partition, RW, media id 0x37E00000000, block size 512
+      io align 0, last LBA 0x3F7FF, 133169152 bytes
+      path: PciRoot(0x0)/Pci(0x2,0x1)/Pci(0x0,0x0)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,...)/HD(1,GPT,...)
+```
+
+In either listing mode, if the firmware marks a device as removable,
+it will be noted on the end of the line that shows the device index and type.
 
 Note: the numbers shown by `--list` are the application’s own selectors for `EFI_BLOCK_IO_PROTOCOL` handles. They are independent from the UEFI shell’s `blkN` numbering, and the two numbering schemes may not match.
 
@@ -104,21 +150,22 @@ fs0:\> BlkDump.efi -d 0 --all-devices fs0:\dumps
 ```
 
 This creates files such as `blk3.bin` and `blk4.bin` for handles whose UEFI
-device paths extend the selected `blk0` path. The parent handle itself and
+device paths extend the selected device index. The parent handle itself and
 unrelated block devices are skipped. The output directory must already exist.
 
 ### Options
 
 Parameter         |Short| Usage
 ------------------|-----|-------------------------------------
-`--version`       |`-v` | print the embedded build timestamp and exit.
+`--version`       |     | print the embedded build timestamp and exit.
 `--list`          |`-l` | enumerate block devices and exit.
-`--break`         |`-b` | print the list output one screen at a time; press `q` to stop.
+`--verbose`       |`-v` | with `--list`, show raw media details and full device paths.
+`--break`         |`-b` | print the list output one page at a time; press q to stop.
 `--device <index>`|`-d` | select a device by the right-aligned number shown by `-l`.
 `--start <lba>`   |`-s` | starting LBA; decimal or `0x` hexadecimal is accepted.
 `--count <blocks>`|`-n` | number of blocks to read; defaults to 128.
 `--output <path>` |`-o` | filesystem path for the output file. Regular file only.
-`--all-devices <directory>`|| with `-d`, dump each child handle as `blkN.bin`.
+`--all-devices <dir>`  || with `-d`, dump each child handle as `blkN.bin`.
 `--overwrite`     |     | replace existing output files without prompting.
 `--no-overwrite`  |     | skip existing output files without reading their source handles.
 
@@ -126,10 +173,12 @@ Parameter         |Short| Usage
 
 - The utility deliberately excludes any ability to write directly to block devices.
 - The chosen output path must be a regular file, not a directory or a block device.
-- Reads are currently limited 1 block at a time, to work around a device's read size limits issues
+- Reads are currently limited to 1 block at a time, to work around a device's read size limits issues
 
 ## Development note
 
-The implementation was largely generated by GitHub Copilot in Visual Studio Code under my direction. 
-I defined the goals, guided the design and implementation, 
-reviewed the code, and tested the resulting application.
+The project was initially developed with substantial assistance from
+GitHub Copilot in Visual Studio Code under my direction. I defined the
+requirements, guided the design and implementation, reviewed generated
+code, performed manual refactoring and maintenance, and tested the
+resulting application across multiple systems.

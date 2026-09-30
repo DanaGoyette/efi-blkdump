@@ -1,0 +1,298 @@
+Devices:
+   0: whole disk, RW, media id 0x726F6E73, block size 4096
+      io align 8, last LBA 0x3FFF, 67108864 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)
+   1: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x83, 540672 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(1,GPT,B7A12F2D-9578-6B04-3CBD-04A0A49BE489)
+   2: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0xB5, 745472 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(2,GPT,B3A459BB-2B78-EDDC-06E4-85E3852DBEFD)
+   3: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x1F, 131072 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(3,GPT,402EE991-D235-FE3A-5DDB-1A4E95A2FA65)
+   4: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(4,GPT,A196D702-FCC3-CAB8-C8AB-EC261006F5B8)
+   5: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x1F, 131072 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(5,GPT,04DE62AE-E1B7-654A-5FBA-2281D65EC656)
+   6: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(6,GPT,6AF645DC-77D5-A838-D7BE-022CBC5DC08E)
+   7: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(7,GPT,7A349394-1F16-4FF9-7F2B-174FC7CD4741)
+   8: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x4F, 327680 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(8,GPT,BC6595C7-66E2-8B08-0D26-94F6A5FF444D)
+   9: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(9,GPT,08C9F670-75EF-751E-EC47-198783FC5363)
+  10: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x4F, 327680 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(10,GPT,3F287EA3-EB52-DFF0-47B1-3162ACC8F0CC)
+  11: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(11,GPT,1CF3975A-E8C5-A346-6783-7DE72659C90E)
+  12: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x1, 8192 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(12,GPT,D16F5151-5299-359A-1B77-405A7275DFF3)
+  13: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(13,GPT,B10E52B4-33B4-C66D-BEFB-590EB60B5695)
+  14: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x1, 8192 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(14,GPT,BD3BDD6B-85DC-B6E6-AF0C-B76503C16677)
+  15: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(15,GPT,0EF1A929-415F-BFEC-EF6B-4791AB773B39)
+  16: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x3, 16384 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(16,GPT,A40B1B48-AA8B-B2F5-8945-3DEE0BA96A0C)
+  17: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(17,GPT,DBB74B23-5FCE-BCFA-4E31-9DAB3CF19516)
+  18: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x3, 16384 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(18,GPT,196C7C82-28AF-36FD-8CA0-D9C339288288)
+  19: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(19,GPT,0317BF89-A0DF-2822-7612-920E15E4D46D)
+  20: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x13, 81920 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(20,GPT,F4B766D4-A180-B778-4912-8F483F1A727E)
+  21: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(21,GPT,D87F726B-26CC-B8A2-D6C1-006802086C98)
+  22: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x13, 81920 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(22,GPT,8F5D701B-C988-6232-1517-8A9CFC203C70)
+  23: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(23,GPT,00787394-D76A-38C3-22A0-667F68942BEE)
+  24: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(24,GPT,1FA596D9-6AA7-083B-CEAB-148666692D27)
+  25: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(25,GPT,0F4EE72A-3C86-1690-9358-4B9CA6667A97)
+  26: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(26,GPT,F543376A-B27E-212E-38B3-34E2F45243BC)
+  27: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(27,GPT,E88E306B-685B-7C9B-30DE-96EDF8822AE9)
+  28: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(28,GPT,AF10F798-C5EC-B3AC-D0FC-3FC0B23D3CFD)
+  29: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(29,GPT,1F3DFFBC-4B58-B3E3-1CCF-2F7A02F0F45B)
+  30: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(30,GPT,5824C91D-C402-7B31-8568-BFE0D30DB6C0)
+  31: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(31,GPT,8DCCCA70-668E-F331-2E5B-7E28084276EB)
+  32: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x45, 286720 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(32,GPT,CEB734A4-054E-02EE-16EE-E7615F27F8D3)
+  33: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x3, 16384 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(33,GPT,9C5F65AC-2207-63CF-8254-16FD4B65B809)
+  34: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(34,GPT,D5E35AA8-7E9A-7857-05C4-B87C07FC73A2)
+  35: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x13, 81920 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(35,GPT,3C8EE8BC-D99F-99ED-9748-DCFC640139BD)
+  36: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(36,GPT,AB29617D-0819-4788-5962-97F997B68C2A)
+  37: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x0, 4096 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(37,GPT,0AF079BE-2F6D-9E30-6D50-64F3AB8F222F)
+  38: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x1, 8192 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(38,GPT,18ADB5CE-04C2-50B7-2441-77B80A5921CF)
+  39: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0xB, 49152 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(39,GPT,2B320CA5-F180-47E3-566F-6C43FA8E404E)
+  40: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x6, 28672 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(40,GPT,62E19698-59BF-B386-7A80-FEA96900E4D5)
+  41: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0xF, 65536 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(41,GPT,DEB156A7-24CC-7B0C-5542-86A23416364A)
+  42: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x7F, 524288 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(42,GPT,D4FB5A86-CE03-E917-3C1A-C37D9C03DFC1)
+  43: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x23E, 2355200 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(43,GPT,3BDEFD34-8A3C-FBEA-5DEC-E1B71D68C9D0)
+  44: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x12E, 1241088 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(44,GPT,DA3783FE-4BB0-771B-1EC2-185668A90EC3)
+  45: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x63, 409600 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(45,GPT,D1528F16-30DE-C80A-D1AA-16479BD0B159)
+  46: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x93E, 9695232 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(46,GPT,A664D54E-E24F-1A78-3FB6-331FD8256086)
+  47: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x54, 348160 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(47,GPT,61AA0891-2342-4E1A-C98D-A1A560133540)
+  48: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0xF, 65536 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(48,GPT,73D994CB-C6C9-5916-0C6B-6C1067FF1A59)
+  49: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x5DF, 6160384 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(49,GPT,74287ABB-2425-1BFC-A44C-64C55D9BB6AB)
+  50: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x17, 98304 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(50,GPT,2ED7F7BD-FB93-4C17-696C-CB64A9AB45D0)
+  51: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x260, 2494464 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(51,GPT,4CAC78F2-A7BE-D252-15C0-FEF7571B5203)
+  52: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x17, 98304 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(52,GPT,54223453-0659-C06F-772C-F24418B85A27)
+  53: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0xBF, 786432 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(53,GPT,B28CC0E7-99B6-6CA7-691C-A917E3EE0CE2)
+  54: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x7, 32768 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(54,GPT,31493266-12BB-6BF3-E1AB-32740F71BD4F)
+  55: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x7, 32768 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(55,GPT,219F212A-2304-23C2-A36D-B297D546E6F0)
+  56: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x1DC, 1953792 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(56,GPT,58C70053-3F68-E903-B4F8-DF51612B8042)
+  57: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0xED, 974848 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(57,GPT,A6EB1B38-22E8-40C0-6600-3DD1284D0DCA)
+  58: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0xB, 49152 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(58,GPT,9EC9FDEA-0A2D-ABCE-B336-93576A1A6AC5)
+  59: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x1F, 131072 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(59,GPT,3BF63DB3-1A73-80B1-5C70-6B5C355D48BD)
+  60: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x1FF, 2097152 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(60,GPT,B66308E5-D4B6-735C-355D-43525CBBB5C5)
+  61: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x17, 98304 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(61,GPT,DCDCED9D-7027-B848-5470-F3AE55BC1B9B)
+  62: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x21, 139264 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(62,GPT,17E8800D-11C1-9601-48C2-B3EFB963F97D)
+  63: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x1BE, 1830912 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(63,GPT,40242549-F3DC-4D6E-0875-4F82A0C39CA9)
+  64: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0xF, 65536 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(64,GPT,2B3FD01E-CB07-A757-6BD9-A8B63C37449D)
+  65: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x7F, 524288 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(65,GPT,1468E309-5172-7657-43CE-CAA24076B72D)
+  66: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x23E, 2355200 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(66,GPT,DFA52D5E-7108-EE3C-F479-E51010A5F53C)
+  67: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x12E, 1241088 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(67,GPT,05D55F67-E83E-40C3-4588-E1CD8A60DB3A)
+  68: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x63, 409600 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(68,GPT,78B0A75E-E4E5-C27B-9A49-675639545FA2)
+  69: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x93E, 9695232 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(69,GPT,8D1E3407-8FFA-36DC-0FEB-5AA3D7B7982A)
+  70: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x54, 348160 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(70,GPT,106F783E-343E-CD1C-059A-2049A2908AA0)
+  71: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0xF, 65536 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(71,GPT,313AFE40-E2D0-4D30-2ED8-10946246D164)
+  72: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x5DF, 6160384 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(72,GPT,436B7D5B-939E-4112-D38E-1E764E3A17F5)
+  73: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x17, 98304 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(73,GPT,7536A92C-2F3C-FD13-63C3-29675898039A)
+  74: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x260, 2494464 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(74,GPT,88329A77-5791-4FA2-AB87-35FE8B2BABD7)
+  75: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x17, 98304 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(75,GPT,CCC1C9AA-B143-08D9-C01B-9F30C40C51E7)
+  76: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0xBF, 786432 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(76,GPT,76CD76B9-76A9-CA53-772B-94E4AB7A4F7A)
+  77: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x7, 32768 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(77,GPT,1E382634-2500-F82D-417F-61A2AC58BBFF)
+  78: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x7, 32768 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(78,GPT,3C112829-B6A7-762B-8FDD-EF86EE5E8029)
+  79: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x1DC, 1953792 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(79,GPT,8258007E-D416-005D-F227-4F2BCC46F8B4)
+  80: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0xED, 974848 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(80,GPT,66A85C0E-81B4-2D94-BF37-49FA20D1B4F2)
+  81: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0xB, 49152 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(81,GPT,27F9B96E-D35A-7ADD-EBB0-678406E2ECEA)
+  82: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x1F, 131072 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(82,GPT,703069CE-B561-1DEA-9BEE-2F836AAA462D)
+  83: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x1FF, 2097152 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(83,GPT,61932DCF-E534-25D9-F8E3-B89D7AD182C2)
+  84: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x17, 98304 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(84,GPT,4254926D-014E-3CD7-6EB4-A1B670226ADC)
+  85: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x21, 139264 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(85,GPT,E87D4F4D-121B-9E8A-9ACC-5D1A03AD4FCD)
+  86: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x1BE, 1830912 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(86,GPT,816AE364-CA3B-4599-CB0F-6953000DD0DC)
+  87: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0xF, 65536 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(87,GPT,6543E9AF-B05A-02A8-0295-5A0E8E0F5BD8)
+  88: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0xF, 65536 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(88,GPT,6C8BDC15-164B-F488-7E9C-7796ABB45E8A)
+  89: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x7, 32768 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(89,GPT,45DF364B-FCCA-A2C0-9374-A5977DD52B04)
+  90: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x7, 32768 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(90,GPT,AC0F9C51-882F-71AF-F905-4506F25B22A6)
+  91: partition, RW, media id 0x726F6E73, block size 4096
+      io align 0, last LBA 0x7F, 524288 bytes
+      path: VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(91,GPT,F2B35C04-A3C3-4059-998D-B22B98ECA3AE)
+  92: whole disk, RW, media id 0x0, block size 512
+      io align 8, last LBA 0x74706DAF, 1000204886016 bytes
+      path: PcieRoot(0x6)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,43-07-C0-6A-94-A7-79-64)
+  93: partition, RW, media id 0x0, block size 512
+      io align 0, last LBA 0x81FFF, 272629760 bytes
+      path: PcieRoot(0x6)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,43-07-C0-6A-94-A7-79-64)/HD(1,GPT,C9ED26BD-10DC-4CE7-8897-59872AA92A7D)
+  94: partition, RW, media id 0x0, block size 512
+      io align 0, last LBA 0x7FFF, 16777216 bytes
+      path: PcieRoot(0x6)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,43-07-C0-6A-94-A7-79-64)/HD(2,GPT,7AE7849A-E84E-44D8-9367-B7C512BC68E8)
+  95: partition, RW, media id 0x0, block size 512
+      io align 0, last LBA 0x69AC9FFF, 907735465984 bytes
+      path: PcieRoot(0x6)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,43-07-C0-6A-94-A7-79-64)/HD(3,GPT,DF99A220-28C8-46B3-A549-D2F470E83D12)
+  96: partition, RW, media id 0x0, block size 512
+      io align 0, last LBA 0x28007FF, 21475885056 bytes
+      path: PcieRoot(0x6)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,43-07-C0-6A-94-A7-79-64)/HD(4,GPT,98A8D14E-BCDB-4EE5-A089-38666B6EB1C5)
+  97: partition, RW, media id 0x0, block size 512
+      io align 0, last LBA 0x3FFFFF, 2147483648 bytes
+      path: PcieRoot(0x6)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,43-07-C0-6A-94-A7-79-64)/HD(5,GPT,16CBE237-B17D-4892-9EAD-0CCA28C32BE1)
+  98: partition, RW, media id 0x0, block size 512
+      io align 0, last LBA 0x7FB0FFF, 68553801728 bytes
+      path: PcieRoot(0x6)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,43-07-C0-6A-94-A7-79-64)/HD(6,GPT,BAE314D3-7D44-468A-A71F-0FA5B8C96521)

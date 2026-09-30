@@ -44,6 +44,7 @@ typedef struct {
   BOOLEAN      AllBlocks;
   BOOLEAN      AllDevices;
   BOOLEAN      PauseListing;
+  BOOLEAN      VerboseListing;
   BOOLEAN      PromptForAll;
   OVERWRITE_MODE OverwriteMode;
   BOOLEAN      HasOutput;
@@ -56,13 +57,15 @@ PrintUsage (
   )
 {
   Print (L"Usage: BlkDump.efi -l\n");
-  Print (L"       BlkDump.efi -v\n");
+  Print (L"       BlkDump.efi -l -v\n");
   Print (L"       BlkDump.efi -d <index> [-s <lba>] [-n <blocks>] -o <file>\n\n");
   Print (L"       BlkDump.efi -d <index> -a -o <file>\n\n");
   Print (L"       BlkDump.efi -d <index> --all-devices <directory>\n\n");
-  Print (L"  -v              print build version\n");
+  Print (L"       BlkDump.efi --version\n");
+  Print (L"  --version       print build version\n");
   Print (L"  -l              list EFI_BLOCK_IO_PROTOCOL handles\n");
-  Print (L"  -b              pause after each listed device\n");
+  Print (L"  -v              with -l, show full listing details\n");
+  Print (L"  -b              pause after each page of list output\n");
   Print (L"  -d <index>      select device by the number shown by -l\n");
   Print (L"  -s <lba>        starting LBA (default: 0)\n");
   Print (L"  -n <blocks>     block count to dump (default: 128)\n");
@@ -144,7 +147,12 @@ ParseOptions (
       continue;
     }
 
-    if (StrCmp (Argument, L"-v") == 0 || StrCmp (Argument, L"--version") == 0) {
+    if (StrCmp (Argument, L"-v") == 0 || StrCmp (Argument, L"--verbose") == 0) {
+      Options->VerboseListing = TRUE;
+      continue;
+    }
+
+    if (StrCmp (Argument, L"-V") == 0 || StrCmp (Argument, L"--version") == 0) {
       *VersionOnly = TRUE;
       continue;
     }
@@ -248,6 +256,11 @@ ParseOptions (
     return EFI_INVALID_PARAMETER;
   }
 
+  if (Options->VerboseListing && !*ListOnly) {
+    Print (L"--verbose requires --list.\n");
+    return EFI_INVALID_PARAMETER;
+  }
+
   if (Options->AllDevices &&
       (Options->HasStart || Options->HasCount || Options->HasOutput)) {
     Print (L"--all-devices cannot be combined with --start, --count, or --output.\n");
@@ -259,46 +272,373 @@ ParseOptions (
 
 STATIC
 VOID
-PrintDevices (
-  IN EFI_HANDLE *Handles,
-  IN UINTN      HandleCount,
-  IN BOOLEAN    PauseListing
+FormatByteSize (
+  IN  UINT64 ByteCount,
+  OUT CHAR16 *Buffer,
+  IN  UINTN  BufferSize
   )
 {
-  UINTN Index;
-  EFI_BLOCK_IO_PROTOCOL *BlockIo;
-  EFI_STATUS Status;
-  UINT64 TotalBytes;
-  EFI_DEVICE_PATH_PROTOCOL *DevicePath;
-  CHAR16 *DevicePathText;
-  SHELL_PROMPT_RESPONSE *Response;
-  UINTN ScreenColumns;
-  UINTN ScreenRows;
-  UINTN PrintedLines;
-  UINTN DeviceLines;
-  UINTN PathLines;
-  EFI_STATUS PromptStatus;
+  STATIC CONST CHAR16 *Units[] = { L"B", L"KiB", L"MiB", L"GiB", L"TiB" };
+  UINTN UnitIndex;
+  UINT64 UnitSize;
+  UINT64 Whole;
+  UINTN Tenths;
 
-  Print (L"Devices:\n");
-  Response = NULL;
-  ScreenColumns = 80;
-  ScreenRows = 25;
-  PrintedLines = 1;
+  UnitIndex = 0;
+  UnitSize = 1;
+  while (UnitIndex < 4 && ByteCount / UnitSize >= 1024) {
+    UnitSize *= 1024;
+    ++UnitIndex;
+  }
+
+  Whole = ByteCount / UnitSize;
+  if (UnitIndex == 0) {
+    UnicodeSPrint (Buffer, BufferSize, L"%Lu B", Whole);
+    return;
+  }
+
+  Tenths = (UINTN)(((ByteCount % UnitSize) * 10 + UnitSize / 2) / UnitSize);
+  if (Tenths == 10) {
+    ++Whole;
+    Tenths = 0;
+  }
+  if (Tenths == 0) {
+    UnicodeSPrint (Buffer, BufferSize, L"%Lu %s", Whole, Units[UnitIndex]);
+  } else {
+    UnicodeSPrint (Buffer, BufferSize, L"%Lu.%u %s", Whole, Tenths, Units[UnitIndex]);
+  }
+}
+
+STATIC
+UINTN
+GetDevicePathPrefixLength (
+  IN EFI_DEVICE_PATH_PROTOCOL *DevicePath
+  )
+{
+  EFI_DEVICE_PATH_PROTOCOL *Node;
+  UINTN Length;
+
+  Length = 0;
+  Node = DevicePath;
+  while (Node != NULL && !IsDevicePathEnd (Node)) {
+    Length += DevicePathNodeLength (Node);
+    Node = NextDevicePathNode (Node);
+  }
+  return Length;
+}
+
+STATIC
+BOOLEAN
+IsChildDevicePath (
+  IN EFI_DEVICE_PATH_PROTOCOL *ParentPath,
+  IN EFI_DEVICE_PATH_PROTOCOL *CandidatePath
+  );
+
+STATIC
+UINTN
+FindParentDiskIndex (
+  IN EFI_HANDLE *Handles,
+  IN UINTN      HandleCount,
+  IN UINTN      CandidateIndex
+  )
+{
+  EFI_BLOCK_IO_PROTOCOL *ParentBlockIo;
+  EFI_DEVICE_PATH_PROTOCOL *ParentPath;
+  EFI_DEVICE_PATH_PROTOCOL *CandidatePath;
+  EFI_STATUS Status;
+  UINTN Index;
+  UINTN ParentIndex;
+  UINTN ParentLength;
+
+  CandidatePath = DevicePathFromHandle (Handles[CandidateIndex]);
+  if (CandidatePath == NULL) {
+    return MAX_UINTN;
+  }
+
+  ParentIndex = MAX_UINTN;
+  ParentLength = 0;
+  for (Index = 0; Index < HandleCount; ++Index) {
+    if (Index == CandidateIndex) {
+      continue;
+    }
+    Status = gBS->HandleProtocol (Handles[Index], &gEfiBlockIoProtocolGuid, (VOID **)&ParentBlockIo);
+    if (EFI_ERROR (Status) || ParentBlockIo == NULL || ParentBlockIo->Media == NULL ||
+        ParentBlockIo->Media->LogicalPartition) {
+      continue;
+    }
+    ParentPath = DevicePathFromHandle (Handles[Index]);
+    if (ParentPath != NULL && IsChildDevicePath (ParentPath, CandidatePath) &&
+        GetDevicePathPrefixLength (ParentPath) > ParentLength) {
+      ParentIndex = Index;
+      ParentLength = GetDevicePathPrefixLength (ParentPath);
+    }
+  }
+  return ParentIndex;
+}
+
+STATIC
+VOID
+GetScreenSize (
+  UINTN *ScreenColumns,
+  UINTN *ScreenRows
+  )
+{
+  *ScreenColumns = 80;
+  *ScreenRows = 25;
   if (gST != NULL && gST->ConOut != NULL && gST->ConOut->Mode != NULL) {
     if (!EFI_ERROR (gST->ConOut->QueryMode (
                       gST->ConOut,
                       gST->ConOut->Mode->Mode,
-                      &ScreenColumns,
-                      &ScreenRows
+                      ScreenColumns,
+                      ScreenRows
                       ))) {
       if (ScreenColumns == 0) {
-        ScreenColumns = 80;
+        *ScreenColumns = 80;
       }
       if (ScreenRows == 0) {
-        ScreenRows = 25;
+        *ScreenRows = 25;
       }
     }
   }
+}
+
+STATIC
+BOOLEAN
+CheckContinueListing (
+  IN UINTN ScreenRows,
+  IN OUT UINTN *PrintedLines,
+  IN BOOLEAN PauseEnabled
+  )
+{
+  SHELL_PROMPT_RESPONSE *Response;
+  EFI_STATUS Status;
+
+  if (!PauseEnabled) {
+    return TRUE;
+  }
+
+  if (*PrintedLines < ScreenRows - 1) {
+    return TRUE;
+  }
+
+  Print (L"-- More -- (Enter to continue, Q to quit) ");
+
+  Status = ShellPromptForResponse (
+             ShellPromptResponseTypeQuitContinue,
+             NULL,
+             (VOID **)&Response
+             );
+
+  if (EFI_ERROR (Status) || Response == NULL) {
+    if (Response != NULL) {
+      FreePool (Response);
+    }
+    return FALSE;
+  }
+
+  if (*Response == ShellPromptResponseQuit) {
+    FreePool (Response);
+    return FALSE;
+  }
+
+  FreePool (Response);
+
+  *PrintedLines = 0;
+  return TRUE;
+}
+
+STATIC
+VOID
+PrintDevicesGrouped (
+  IN EFI_HANDLE *Handles,
+  IN UINTN      HandleCount,
+  IN BOOLEAN    PauseEnabled
+)
+{
+  EFI_STATUS Status;
+  UINTN ScreenColumns = 80;
+  UINTN ScreenRows = 25;
+  UINTN PrintedLines = 0;
+
+  UINTN ParentIndex;
+  EFI_BLOCK_IO_PROTOCOL *ParentBlockIo = NULL;
+  EFI_DEVICE_PATH_PROTOCOL *ParentPath = NULL;
+  CHAR16 *ParentPathText = NULL;
+  UINTN ParentPathLines = 1;
+
+  UINTN ChildIndex;
+  EFI_BLOCK_IO_PROTOCOL *ChildBlockIo = NULL;
+  EFI_DEVICE_PATH_PROTOCOL *ChildPath = NULL;
+  CHAR16 *ChildPathText = NULL;
+  UINTN ChildPathLines = 1;
+
+
+  // these are used for the parent and then reused for the child
+  UINT64 TotalBytes;
+  CHAR16 SizeText[32];
+  CHAR16 BlockSizeText[32];
+
+  /*
+  * Devices:
+  *    1: whole disk, ...
+  *       path: ACPI(...)/PCI(...)
+  *          2: partition, ...
+  *             path: HD(...)
+  * Ruler strings below use:
+  * OOOO = parent ("outer") index field
+  * IIII = child ("inner") index field
+  */
+
+  CONST UINTN ParentIndexWidth    = StrLen(L"OOOO");
+  CONST UINTN ChildIndexWidth     = StrLen(L"IIII");
+  CONST UINTN ParentPathPrefixLen = StrLen(L"OOOO: path: ");
+  CONST UINTN ChildPathPrefixLen  = StrLen(L"OOOO: IIII: path: ");
+
+  GetScreenSize(&ScreenColumns, &ScreenRows);
+
+  Print (L"Devices:\n");
+  PrintedLines++;
+
+  for (ParentIndex = 0; ParentIndex < HandleCount; ++ParentIndex) {
+    Status = gBS->HandleProtocol (Handles[ParentIndex], &gEfiBlockIoProtocolGuid, (VOID **)&ParentBlockIo);
+    if (EFI_ERROR (Status) || ParentBlockIo == NULL || ParentBlockIo->Media == NULL) {
+      continue;
+    }
+    if (ParentBlockIo->Media->LogicalPartition &&
+        FindParentDiskIndex (Handles, HandleCount, ParentIndex) != MAX_UINTN) {
+      continue;
+    }
+
+    ParentPath = DevicePathFromHandle (Handles[ParentIndex]);
+    if (ParentPath != NULL) {
+      ParentPathText = ConvertDevicePathToText (ParentPath, TRUE, TRUE);
+      if (ParentPathText != NULL) {
+        ParentPathLines = (ParentPathPrefixLen + StrLen (ParentPathText) + ScreenColumns - 1) / ScreenColumns;
+      }
+    }
+    TotalBytes = 0;
+    if (ParentBlockIo->Media->BlockSize != 0 && ParentBlockIo->Media->LastBlock != MAX_UINT64 &&
+        ParentBlockIo->Media->LastBlock + 1ULL <= MAX_UINT64 / ParentBlockIo->Media->BlockSize) {
+      TotalBytes = (ParentBlockIo->Media->LastBlock + 1ULL) * ParentBlockIo->Media->BlockSize;
+    }
+    FormatByteSize (TotalBytes, SizeText, sizeof (SizeText));
+    FormatByteSize (ParentBlockIo->Media->BlockSize, BlockSizeText, sizeof (BlockSizeText));
+    Print (L"%*u: %s, %s, %s, block size %s%s\n",
+      ParentIndexWidth,
+      ParentIndex,
+      ParentBlockIo->Media->LogicalPartition ? L"partition" : L"whole disk",
+      ParentBlockIo->Media->ReadOnly ? L"RO" : L"RW",
+      SizeText,
+      BlockSizeText,
+      ParentBlockIo->Media->RemovableMedia ? L", removable" : L""
+    );
+    PrintedLines++;
+
+    Print (L"%*s  path: %s\n",
+      ParentIndexWidth,
+      L"",
+      ParentPathText == NULL ? L"<none>" : ParentPathText
+    );
+    PrintedLines += ParentPathLines;
+
+    if (ParentPathText != NULL) {
+      FreePool (ParentPathText);
+      ParentPathText = NULL;
+    }
+    if (!CheckContinueListing (ScreenRows, &PrintedLines, PauseEnabled)) {
+      return;
+    }
+
+    if (ParentBlockIo->Media->LogicalPartition) {
+      // don't check for children of partitions
+      continue;
+    }
+
+    for (ChildIndex = 0; ChildIndex < HandleCount; ++ChildIndex) {
+      Status = gBS->HandleProtocol (Handles[ChildIndex], &gEfiBlockIoProtocolGuid, (VOID **)&ChildBlockIo);
+      if (EFI_ERROR (Status) || ChildBlockIo == NULL || ChildBlockIo->Media == NULL ||
+          !ChildBlockIo->Media->LogicalPartition ||
+          FindParentDiskIndex (Handles, HandleCount, ChildIndex) != ParentIndex) {
+        continue;
+      }
+      ChildPath = DevicePathFromHandle (Handles[ChildIndex]);
+      ChildPathText = NULL;
+      ChildPathLines = 1;
+      if (ChildPath != NULL && ParentPath != NULL) {
+        ChildPathText = ConvertDevicePathToText(
+            (EFI_DEVICE_PATH_PROTOCOL *)((UINT8 *)ChildPath + GetDevicePathPrefixLength(ParentPath)),
+            TRUE,
+            TRUE);
+      }
+      TotalBytes = 0;
+      if (ChildBlockIo->Media->BlockSize != 0 && ChildBlockIo->Media->LastBlock != MAX_UINT64 &&
+          ChildBlockIo->Media->LastBlock + 1ULL <= MAX_UINT64 / ChildBlockIo->Media->BlockSize) {
+        TotalBytes = (ChildBlockIo->Media->LastBlock + 1ULL) * ChildBlockIo->Media->BlockSize;
+      }
+      FormatByteSize (TotalBytes, SizeText, sizeof (SizeText));
+
+      Print (L"%*s  %*u: partition, %s, %s\n",
+        ParentIndexWidth,
+        L"",
+        ChildIndexWidth,
+        ChildIndex,
+        ChildBlockIo->Media->ReadOnly ? L"RO" : L"RW",
+        SizeText
+      );
+      PrintedLines += 1;
+
+      Print (L"%*s  %*s  path: %s\n",
+        ParentIndexWidth,
+        L"",
+        ChildIndexWidth,
+        L"",
+        ChildPathText == NULL ? L"<none>" : ChildPathText
+      );
+      if (ChildPathText != NULL) {
+        ChildPathLines = (ChildPathPrefixLen + StrLen (ChildPathText) + ScreenColumns - 1) / ScreenColumns;
+      }
+      PrintedLines += ChildPathLines;
+
+      if (ChildPathText != NULL) {
+        FreePool (ChildPathText);
+        ChildPathText = NULL;
+      }
+
+      if (!CheckContinueListing (ScreenRows, &PrintedLines, PauseEnabled)) {
+        return;
+      }
+    }
+  }
+}
+
+STATIC
+VOID
+PrintDevicesVerbose (
+  IN EFI_HANDLE *Handles,
+  IN UINTN      HandleCount,
+  IN BOOLEAN    PauseEnabled
+  )
+{
+  EFI_STATUS Status;
+  UINTN ScreenColumns = 80;
+  UINTN ScreenRows = 25;
+  UINTN PrintedLines = 0;
+
+  UINTN Index;
+  EFI_BLOCK_IO_PROTOCOL *BlockIo = NULL;
+  EFI_DEVICE_PATH_PROTOCOL *DevicePath = NULL;
+  CHAR16 *DevicePathText = NULL;
+  UINTN PathLines = 1;
+  UINT64 TotalBytes;
+
+  CONST UINTN IndexWidth    = StrLen(L"   1");
+  CONST UINTN PathPrefixLen = StrLen(L"   1: path: ");
+
+  GetScreenSize (&ScreenColumns, &ScreenRows);
+
+  Print (L"Devices:\n");
+  PrintedLines++;
+
   for (Index = 0; Index < HandleCount; ++Index) {
     Status = gBS->HandleProtocol (Handles[Index], &gEfiBlockIoProtocolGuid, (VOID **)&BlockIo);
     if (EFI_ERROR (Status) || BlockIo == NULL || BlockIo->Media == NULL) {
@@ -312,50 +652,46 @@ PrintDevices (
     }
 
     DevicePath = DevicePathFromHandle (Handles[Index]);
-    DevicePathText = DevicePath == NULL ? NULL : ConvertDevicePathToText (DevicePath, TRUE, TRUE);
-    PathLines = 1;
-    if (DevicePathText != NULL) {
-      PathLines = (StrLen (DevicePathText) + 9 + ScreenColumns - 1) / ScreenColumns;
+    if (DevicePath != NULL) {
+      DevicePathText = DevicePath == NULL ? NULL : ConvertDevicePathToText (DevicePath, TRUE, TRUE);
     }
 
-    Print (
-      L"%3u: %s, media id 0x%lx, block size %u, io align %u, last LBA 0x%lx, %Lu bytes\n"
-      L"    path: %s\n",
+    Print (L"%*u: %s, %s, media id 0x%lx, block size %u%s\n",
+      IndexWidth,
       Index,
-      BlockIo->Media->LogicalPartition ? L"logical partition" : L"whole disk",
+      BlockIo->Media->LogicalPartition ? L"partition" : L"whole disk",
+      BlockIo->Media->ReadOnly ? L"RO" : L"RW",
       BlockIo->Media->MediaId,
       BlockIo->Media->BlockSize,
+      BlockIo->Media->RemovableMedia ? L", removable" : L""
+    );
+    PrintedLines++;
+
+    Print (L"%*s  io align %u, last LBA 0x%lx, %Lu bytes\n",
+      IndexWidth,
+      L"",
       BlockIo->Media->IoAlign,
       BlockIo->Media->LastBlock,
-      TotalBytes,
+      TotalBytes
+    );
+    PrintedLines++;
+
+    Print (L"%*s  path: %s\n",
+      IndexWidth,
+      L"",
       DevicePathText == NULL ? L"<none>" : DevicePathText
-      );
+    );
+    if (DevicePathText != NULL) {
+      PathLines = (PathPrefixLen + StrLen (DevicePathText) + ScreenColumns - 1) / ScreenColumns;
+    }
+    PrintedLines += PathLines;
 
     if (DevicePathText != NULL) {
       FreePool (DevicePathText);
+      DevicePathText = NULL;
     }
-
-    if (PauseListing) {
-      DeviceLines = 1 + PathLines;
-      PrintedLines += DeviceLines;
-      if (PrintedLines >= ScreenRows - 1) {
-        Print (L"-- More -- (Enter to continue, Q to quit) ");
-        PromptStatus = ShellPromptForResponse (
-                         ShellPromptResponseTypeQuitContinue,
-                         NULL,
-                         (VOID **)&Response
-                         );
-        if (EFI_ERROR (PromptStatus) || Response == NULL ||
-            *Response == ShellPromptResponseQuit) {
-          if (Response != NULL) {
-            FreePool (Response);
-          }
-          return;
-        }
-        FreePool (Response);
-        Response = NULL;
-        PrintedLines = 0;
-      }
+    if (!CheckContinueListing (ScreenRows, &PrintedLines, PauseEnabled)) {
+      break;
     }
   }
 }
@@ -772,7 +1108,11 @@ UefiMain (
   }
 
   if (ListOnly) {
-    PrintDevices (Handles, HandleCount, Options.PauseListing);
+    if (Options.VerboseListing) {
+      PrintDevicesVerbose (Handles, HandleCount, Options.PauseListing);
+    } else {
+      PrintDevicesGrouped (Handles, HandleCount, Options.PauseListing);
+    }
     FreePool (Handles);
     return EFI_SUCCESS;
   }

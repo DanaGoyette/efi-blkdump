@@ -1,0 +1,613 @@
+Mapping table
+      FS8: Alias(s):HD3cd:;BLK56:
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(53,GPT,B28CC0E7-99B6-6CA7-691C-A917E3EE0CE2)
+         Handle:      [91]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: FS8:
+      FS9: Alias(s):HD3i:;BLK85:
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(8,GPT,BC6595C7-66E2-8B08-0D26-94F6A5FF444D)
+         Handle:      [64]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: FS9:
+      FS4: Alias(s):HD3k:;BLK9:
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(10,GPT,3F287EA3-EB52-DFF0-47B1-3162ACC8F0CC)
+         Handle:      [66]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: FS4:
+      FS5: Alias(s):HD3q:;BLK15:
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(16,GPT,A40B1B48-AA8B-B2F5-8945-3DEE0BA96A0C)
+         Handle:      [6C]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: FS5:
+      FS6: Alias(s):HD3s:;BLK17:
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(18,GPT,196C7C82-28AF-36FD-8CA0-D9C339288288)
+         Handle:      [6E]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: FS6:
+      FS2: Alias(s):F1:
+          MemoryMapped(0xB,0xA7000000,0xA7613FFF)
+         Handle:      [05]
+         Media Type:  Unknown
+         Removable:   No
+         Current Dir: FS2:
+      FS0: Alias(s):F0:
+          Fv(631008B0-B2D1-410A-8B49-2C5C4D8ECC7E)
+         Handle:      [06]
+         Media Type:  Unknown
+         Removable:   No
+         Current Dir: FS0:
+      FS1: Alias(s):F0:
+          Fv(6FBD4F03-500D-4A8E-9E7F-BB8D0796232D)
+         Handle:      [14F]
+         Media Type:  Unknown
+         Removable:   No
+         Current Dir: FS1:
+      FS7: Alias(s):HD3br:;BLK44:
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(42,GPT,D4FB5A86-CE03-E917-3C1A-C37D9C03DFC1)
+         Handle:      [86]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: FS7:
+      FS3: Alias(s):HD2b:;BLK1:
+          PcieRoot(0x6)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,43-07-C0-6A-94-A7-79-64)/HD(1,GPT,C9ED26BD-10DC-4CE7-8897-59872AA92A7D)
+         Handle:      [1E4]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: FS3:
+     BLK7: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)
+         Handle:      [5C]
+         Media Type:  Unknown
+         Removable:   No
+         Current Dir: BLK7:
+     BLK8: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(1,GPT,B7A12F2D-9578-6B04-3CBD-04A0A49BE489)
+         Handle:      [5D]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK8:
+    BLK19: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(2,GPT,B3A459BB-2B78-EDDC-06E4-85E3852DBEFD)
+         Handle:      [5E]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK19:
+    BLK30: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(3,GPT,402EE991-D235-FE3A-5DDB-1A4E95A2FA65)
+         Handle:      [5F]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK30:
+    BLK41: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(4,GPT,A196D702-FCC3-CAB8-C8AB-EC261006F5B8)
+         Handle:      [60]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK41:
+    BLK52: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(5,GPT,04DE62AE-E1B7-654A-5FBA-2281D65EC656)
+         Handle:      [61]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK52:
+    BLK63: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(6,GPT,6AF645DC-77D5-A838-D7BE-022CBC5DC08E)
+         Handle:      [62]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK63:
+    BLK74: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(7,GPT,7A349394-1F16-4FF9-7F2B-174FC7CD4741)
+         Handle:      [63]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK74:
+    BLK96: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(9,GPT,08C9F670-75EF-751E-EC47-198783FC5363)
+         Handle:      [65]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK96:
+    BLK10: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(11,GPT,1CF3975A-E8C5-A346-6783-7DE72659C90E)
+         Handle:      [67]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK10:
+    BLK11: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(12,GPT,D16F5151-5299-359A-1B77-405A7275DFF3)
+         Handle:      [68]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK11:
+    BLK12: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(13,GPT,B10E52B4-33B4-C66D-BEFB-590EB60B5695)
+         Handle:      [69]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK12:
+    BLK13: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(14,GPT,BD3BDD6B-85DC-B6E6-AF0C-B76503C16677)
+         Handle:      [6A]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK13:
+    BLK14: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(15,GPT,0EF1A929-415F-BFEC-EF6B-4791AB773B39)
+         Handle:      [6B]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK14:
+    BLK16: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(17,GPT,DBB74B23-5FCE-BCFA-4E31-9DAB3CF19516)
+         Handle:      [6D]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK16:
+    BLK18: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(19,GPT,0317BF89-A0DF-2822-7612-920E15E4D46D)
+         Handle:      [6F]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK18:
+    BLK20: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(20,GPT,F4B766D4-A180-B778-4912-8F483F1A727E)
+         Handle:      [70]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK20:
+    BLK21: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(21,GPT,D87F726B-26CC-B8A2-D6C1-006802086C98)
+         Handle:      [71]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK21:
+    BLK22: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(22,GPT,8F5D701B-C988-6232-1517-8A9CFC203C70)
+         Handle:      [72]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK22:
+    BLK23: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(23,GPT,00787394-D76A-38C3-22A0-667F68942BEE)
+         Handle:      [73]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK23:
+    BLK24: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(24,GPT,1FA596D9-6AA7-083B-CEAB-148666692D27)
+         Handle:      [74]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK24:
+    BLK25: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(25,GPT,0F4EE72A-3C86-1690-9358-4B9CA6667A97)
+         Handle:      [75]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK25:
+    BLK26: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(26,GPT,F543376A-B27E-212E-38B3-34E2F45243BC)
+         Handle:      [76]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK26:
+    BLK27: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(27,GPT,E88E306B-685B-7C9B-30DE-96EDF8822AE9)
+         Handle:      [77]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK27:
+    BLK28: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(28,GPT,AF10F798-C5EC-B3AC-D0FC-3FC0B23D3CFD)
+         Handle:      [78]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK28:
+    BLK29: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(29,GPT,1F3DFFBC-4B58-B3E3-1CCF-2F7A02F0F45B)
+         Handle:      [79]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK29:
+    BLK31: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(30,GPT,5824C91D-C402-7B31-8568-BFE0D30DB6C0)
+         Handle:      [7A]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK31:
+    BLK32: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(31,GPT,8DCCCA70-668E-F331-2E5B-7E28084276EB)
+         Handle:      [7B]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK32:
+    BLK33: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(32,GPT,CEB734A4-054E-02EE-16EE-E7615F27F8D3)
+         Handle:      [7C]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK33:
+    BLK34: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(33,GPT,9C5F65AC-2207-63CF-8254-16FD4B65B809)
+         Handle:      [7D]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK34:
+    BLK35: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(34,GPT,D5E35AA8-7E9A-7857-05C4-B87C07FC73A2)
+         Handle:      [7E]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK35:
+    BLK36: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(35,GPT,3C8EE8BC-D99F-99ED-9748-DCFC640139BD)
+         Handle:      [7F]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK36:
+    BLK37: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(36,GPT,AB29617D-0819-4788-5962-97F997B68C2A)
+         Handle:      [80]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK37:
+    BLK38: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(37,GPT,0AF079BE-2F6D-9E30-6D50-64F3AB8F222F)
+         Handle:      [81]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK38:
+    BLK39: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(38,GPT,18ADB5CE-04C2-50B7-2441-77B80A5921CF)
+         Handle:      [82]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK39:
+    BLK40: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(39,GPT,2B320CA5-F180-47E3-566F-6C43FA8E404E)
+         Handle:      [83]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK40:
+    BLK42: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(40,GPT,62E19698-59BF-B386-7A80-FEA96900E4D5)
+         Handle:      [84]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK42:
+    BLK43: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(41,GPT,DEB156A7-24CC-7B0C-5542-86A23416364A)
+         Handle:      [85]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK43:
+    BLK45: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(43,GPT,3BDEFD34-8A3C-FBEA-5DEC-E1B71D68C9D0)
+         Handle:      [87]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK45:
+    BLK46: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(44,GPT,DA3783FE-4BB0-771B-1EC2-185668A90EC3)
+         Handle:      [88]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK46:
+    BLK47: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(45,GPT,D1528F16-30DE-C80A-D1AA-16479BD0B159)
+         Handle:      [89]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK47:
+    BLK48: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(46,GPT,A664D54E-E24F-1A78-3FB6-331FD8256086)
+         Handle:      [8A]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK48:
+    BLK49: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(47,GPT,61AA0891-2342-4E1A-C98D-A1A560133540)
+         Handle:      [8B]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK49:
+    BLK50: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(48,GPT,73D994CB-C6C9-5916-0C6B-6C1067FF1A59)
+         Handle:      [8C]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK50:
+    BLK51: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(49,GPT,74287ABB-2425-1BFC-A44C-64C55D9BB6AB)
+         Handle:      [8D]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK51:
+    BLK53: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(50,GPT,2ED7F7BD-FB93-4C17-696C-CB64A9AB45D0)
+         Handle:      [8E]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK53:
+    BLK54: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(51,GPT,4CAC78F2-A7BE-D252-15C0-FEF7571B5203)
+         Handle:      [8F]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK54:
+    BLK55: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(52,GPT,54223453-0659-C06F-772C-F24418B85A27)
+         Handle:      [90]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK55:
+    BLK57: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(54,GPT,31493266-12BB-6BF3-E1AB-32740F71BD4F)
+         Handle:      [92]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK57:
+    BLK58: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(55,GPT,219F212A-2304-23C2-A36D-B297D546E6F0)
+         Handle:      [93]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK58:
+    BLK59: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(56,GPT,58C70053-3F68-E903-B4F8-DF51612B8042)
+         Handle:      [94]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK59:
+    BLK60: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(57,GPT,A6EB1B38-22E8-40C0-6600-3DD1284D0DCA)
+         Handle:      [95]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK60:
+    BLK61: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(58,GPT,9EC9FDEA-0A2D-ABCE-B336-93576A1A6AC5)
+         Handle:      [96]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK61:
+    BLK62: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(59,GPT,3BF63DB3-1A73-80B1-5C70-6B5C355D48BD)
+         Handle:      [97]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK62:
+    BLK64: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(60,GPT,B66308E5-D4B6-735C-355D-43525CBBB5C5)
+         Handle:      [98]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK64:
+    BLK65: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(61,GPT,DCDCED9D-7027-B848-5470-F3AE55BC1B9B)
+         Handle:      [99]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK65:
+    BLK66: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(62,GPT,17E8800D-11C1-9601-48C2-B3EFB963F97D)
+         Handle:      [9A]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK66:
+    BLK67: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(63,GPT,40242549-F3DC-4D6E-0875-4F82A0C39CA9)
+         Handle:      [9B]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK67:
+    BLK68: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(64,GPT,2B3FD01E-CB07-A757-6BD9-A8B63C37449D)
+         Handle:      [9C]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK68:
+    BLK69: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(65,GPT,1468E309-5172-7657-43CE-CAA24076B72D)
+         Handle:      [9D]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK69:
+    BLK70: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(66,GPT,DFA52D5E-7108-EE3C-F479-E51010A5F53C)
+         Handle:      [9E]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK70:
+    BLK71: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(67,GPT,05D55F67-E83E-40C3-4588-E1CD8A60DB3A)
+         Handle:      [9F]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK71:
+    BLK72: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(68,GPT,78B0A75E-E4E5-C27B-9A49-675639545FA2)
+         Handle:      [A0]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK72:
+    BLK73: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(69,GPT,8D1E3407-8FFA-36DC-0FEB-5AA3D7B7982A)
+         Handle:      [A1]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK73:
+    BLK75: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(70,GPT,106F783E-343E-CD1C-059A-2049A2908AA0)
+         Handle:      [A2]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK75:
+    BLK76: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(71,GPT,313AFE40-E2D0-4D30-2ED8-10946246D164)
+         Handle:      [A3]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK76:
+    BLK77: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(72,GPT,436B7D5B-939E-4112-D38E-1E764E3A17F5)
+         Handle:      [A4]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK77:
+    BLK78: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(73,GPT,7536A92C-2F3C-FD13-63C3-29675898039A)
+         Handle:      [A5]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK78:
+    BLK79: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(74,GPT,88329A77-5791-4FA2-AB87-35FE8B2BABD7)
+         Handle:      [A6]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK79:
+    BLK80: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(75,GPT,CCC1C9AA-B143-08D9-C01B-9F30C40C51E7)
+         Handle:      [A7]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK80:
+    BLK81: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(76,GPT,76CD76B9-76A9-CA53-772B-94E4AB7A4F7A)
+         Handle:      [A8]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK81:
+    BLK82: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(77,GPT,1E382634-2500-F82D-417F-61A2AC58BBFF)
+         Handle:      [A9]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK82:
+    BLK83: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(78,GPT,3C112829-B6A7-762B-8FDD-EF86EE5E8029)
+         Handle:      [AA]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK83:
+    BLK84: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(79,GPT,8258007E-D416-005D-F227-4F2BCC46F8B4)
+         Handle:      [AB]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK84:
+    BLK86: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(80,GPT,66A85C0E-81B4-2D94-BF37-49FA20D1B4F2)
+         Handle:      [AC]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK86:
+    BLK87: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(81,GPT,27F9B96E-D35A-7ADD-EBB0-678406E2ECEA)
+         Handle:      [AD]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK87:
+    BLK88: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(82,GPT,703069CE-B561-1DEA-9BEE-2F836AAA462D)
+         Handle:      [AE]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK88:
+    BLK89: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(83,GPT,61932DCF-E534-25D9-F8E3-B89D7AD182C2)
+         Handle:      [AF]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK89:
+    BLK90: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(84,GPT,4254926D-014E-3CD7-6EB4-A1B670226ADC)
+         Handle:      [B0]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK90:
+    BLK91: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(85,GPT,E87D4F4D-121B-9E8A-9ACC-5D1A03AD4FCD)
+         Handle:      [B1]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK91:
+    BLK92: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(86,GPT,816AE364-CA3B-4599-CB0F-6953000DD0DC)
+         Handle:      [B2]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK92:
+    BLK93: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(87,GPT,6543E9AF-B05A-02A8-0295-5A0E8E0F5BD8)
+         Handle:      [B3]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK93:
+    BLK94: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(88,GPT,6C8BDC15-164B-F488-7E9C-7796ABB45E8A)
+         Handle:      [B4]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK94:
+    BLK95: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(89,GPT,45DF364B-FCCA-A2C0-9374-A5977DD52B04)
+         Handle:      [B5]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK95:
+    BLK97: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(90,GPT,AC0F9C51-882F-71AF-F905-4506F25B22A6)
+         Handle:      [B6]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK97:
+    BLK98: Alias(s):
+          VenHw(7CCE9C94-983F-4D0A-8143-B6C05545B223)/HD(91,GPT,F2B35C04-A3C3-4059-998D-B22B98ECA3AE)
+         Handle:      [B7]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK98:
+     BLK0: Alias(s):
+          PcieRoot(0x6)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,43-07-C0-6A-94-A7-79-64)
+         Handle:      [1E3]
+         Media Type:  Unknown
+         Removable:   No
+         Current Dir: BLK0:
+     BLK2: Alias(s):
+          PcieRoot(0x6)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,43-07-C0-6A-94-A7-79-64)/HD(2,GPT,7AE7849A-E84E-44D8-9367-B7C512BC68E8)
+         Handle:      [1E5]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK2:
+     BLK3: Alias(s):
+          PcieRoot(0x6)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,43-07-C0-6A-94-A7-79-64)/HD(3,GPT,DF99A220-28C8-46B3-A549-D2F470E83D12)
+         Handle:      [1E6]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK3:
+     BLK4: Alias(s):
+          PcieRoot(0x6)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,43-07-C0-6A-94-A7-79-64)/HD(4,GPT,98A8D14E-BCDB-4EE5-A089-38666B6EB1C5)
+         Handle:      [1E7]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK4:
+     BLK5: Alias(s):
+          PcieRoot(0x6)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,43-07-C0-6A-94-A7-79-64)/HD(5,GPT,16CBE237-B17D-4892-9EAD-0CCA28C32BE1)
+         Handle:      [1E8]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK5:
+     BLK6: Alias(s):
+          PcieRoot(0x6)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,43-07-C0-6A-94-A7-79-64)/HD(6,GPT,BAE314D3-7D44-468A-A71F-0FA5B8C96521)
+         Handle:      [1E9]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK6:

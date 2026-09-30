@@ -1,0 +1,91 @@
+Mapping table
+      FS0: Alias(s):HD0b:;BLK1:
+          PciRoot(0x0)/Pci(0x1,0x2)/Pci(0x0,0x0)/NVMe(0x1,69-58-63-45-01-75-A0-00)/HD(1,GPT,C8B99025-C7AF-4302-9089-9EAEE2987AB8)
+         Handle:      [225]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: FS0:
+      FS1: Alias(s):HD1b:;BLK8:
+          PciRoot(0x0)/Pci(0x2,0x1)/Pci(0x0,0x0)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,19-51-13-27-0D-75-A0-00)/HD(1,GPT,68DADD0A-C54A-4DD9-B02D-BBD6B09C7465)
+         Handle:      [22B]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: FS1:
+      FS2: Alias(s):HD1d:;BLK10:
+          PciRoot(0x0)/Pci(0x2,0x1)/Pci(0x0,0x0)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,19-51-13-27-0D-75-A0-00)/HD(3,GPT,DBA9EE7B-32E2-4E15-82AA-B1DE8B2103CA)
+         Handle:      [22D]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: FS2:
+      FS3: Alias(s):HD1e:;BLK11:
+          PciRoot(0x0)/Pci(0x2,0x1)/Pci(0x0,0x0)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,19-51-13-27-0D-75-A0-00)/HD(4,GPT,48253942-5BE6-438D-9976-F48044199436)
+         Handle:      [22E]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: FS3:
+      FS4: Alias(s):HD1f:;BLK12:
+          PciRoot(0x0)/Pci(0x2,0x1)/Pci(0x0,0x0)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,19-51-13-27-0D-75-A0-00)/HD(5,GPT,C944AF72-199A-4668-A067-E62520E9A8F9)
+         Handle:      [22F]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: FS4:
+      FS5: Alias(s):HD2a65535a1:;BLK14:
+          PciRoot(0x0)/Pci(0x2,0x1)/Pci(0x0,0x0)/Pci(0xD,0x0)/Pci(0x0,0x0)/Sata(0x0,0xFFFF,0x0)/HD(1,MBR,0xF452BC6D)
+         Handle:      [257]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: FS5:
+     BLK0: Alias(s):
+          PciRoot(0x0)/Pci(0x1,0x2)/Pci(0x0,0x0)/NVMe(0x1,69-58-63-45-01-75-A0-00)
+         Handle:      [223]
+         Media Type:  Unknown
+         Removable:   No
+         Current Dir: BLK0:
+     BLK5: Alias(s):
+          PciRoot(0x0)/Pci(0x1,0x2)/Pci(0x0,0x0)/NVMe(0x2,69-58-63-45-02-75-A0-00)
+         Handle:      [224]
+         Media Type:  Unknown
+         Removable:   No
+         Current Dir: BLK5:
+     BLK2: Alias(s):
+          PciRoot(0x0)/Pci(0x1,0x2)/Pci(0x0,0x0)/NVMe(0x1,69-58-63-45-01-75-A0-00)/HD(2,GPT,DBE28F11-D2F8-40F0-9CE9-C316DC2C57B2)
+         Handle:      [226]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK2:
+     BLK3: Alias(s):
+          PciRoot(0x0)/Pci(0x1,0x2)/Pci(0x0,0x0)/NVMe(0x1,69-58-63-45-01-75-A0-00)/HD(3,GPT,1135B2F3-FE7E-4C40-82A4-0B1F25334285)
+         Handle:      [227]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK3:
+     BLK4: Alias(s):
+          PciRoot(0x0)/Pci(0x1,0x2)/Pci(0x0,0x0)/NVMe(0x1,69-58-63-45-01-75-A0-00)/HD(4,GPT,A2962CF3-11A2-4929-AE85-94141B2F203D)
+         Handle:      [228]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK4:
+     BLK6: Alias(s):
+          PciRoot(0x0)/Pci(0x1,0x2)/Pci(0x0,0x0)/NVMe(0x2,69-58-63-45-02-75-A0-00)/HD(1,GPT,1E9D36F3-C8F5-4CB9-A4AB-006B31785EE8)
+         Handle:      [229]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK6:
+     BLK7: Alias(s):
+          PciRoot(0x0)/Pci(0x2,0x1)/Pci(0x0,0x0)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,19-51-13-27-0D-75-A0-00)
+         Handle:      [22A]
+         Media Type:  Unknown
+         Removable:   No
+         Current Dir: BLK7:
+     BLK9: Alias(s):
+          PciRoot(0x0)/Pci(0x2,0x1)/Pci(0x0,0x0)/Pci(0x0,0x0)/Pci(0x0,0x0)/NVMe(0x1,19-51-13-27-0D-75-A0-00)/HD(2,GPT,3475D990-A9EC-4A6C-8EF7-D01BDD5DFDCC)
+         Handle:      [22C]
+         Media Type:  HardDisk
+         Removable:   No
+         Current Dir: BLK9:
+    BLK13: Alias(s):
+          PciRoot(0x0)/Pci(0x2,0x1)/Pci(0x0,0x0)/Pci(0xD,0x0)/Pci(0x0,0x0)/Sata(0x0,0xFFFF,0x0)
+         Handle:      [256]
+         Media Type:  Unknown
+         Removable:   No
+         Current Dir: BLK13:
