@@ -121,6 +121,33 @@ ParseDeviceIndex (
 
 STATIC
 EFI_STATUS
+ParseUint64String (
+  IN  CONST CHAR16 *Text,
+  OUT UINT64       *Value
+  )
+{
+  if (Text == NULL || Value == NULL) {
+    return EFI_INVALID_PARAMETER;
+  }
+
+  if (StrnCmp (Text, L"0x", 2) == 0 || StrnCmp (Text, L"0X", 2) == 0) {
+    *Value = StrHexToUint64 (Text);
+    if (*Value == 0 && StrCmp (Text, L"0x0") != 0 && StrCmp (Text, L"0X0") != 0) {
+      // If the value parsed as zero when the input wasn't a simple "0x0", consider it an error.
+      return EFI_INVALID_PARAMETER;
+    }
+  } else {
+    *Value = StrDecimalToUint64 (Text);
+    if (*Value == 0 && StrCmp (Text, L"0") != 0) {
+      // If the value parsed as zero when the input wasn't a simple "0", consider it an error.
+      return EFI_INVALID_PARAMETER;
+    }
+  }
+  return EFI_SUCCESS;
+}
+
+STATIC
+EFI_STATUS
 ParseOptions (
   IN  EFI_SHELL_PARAMETERS_PROTOCOL *ShellParameters,
   OUT OPTIONS                       *Options,
@@ -128,6 +155,7 @@ ParseOptions (
   OUT BOOLEAN                       *VersionOnly
   )
 {
+  EFI_STATUS Status;
   UINTN Index;
   CONST CHAR16 *Argument;
 
@@ -175,21 +203,33 @@ ParseOptions (
     }
 
     if (StrCmp (Argument, L"-s") == 0 || StrCmp (Argument, L"--start") == 0) {
+      UINT64 StartLbaValue = 0;
       if (++Index >= ShellParameters->Argc) {
         Print (L"Missing value for %s.\n", Argument);
         return EFI_INVALID_PARAMETER;
       }
-      Options->StartLba = StrDecimalToUint64 (ShellParameters->Argv[Index]);
+      Status = ParseUint64String (ShellParameters->Argv[Index], &StartLbaValue);
+      if (EFI_ERROR(Status)) {
+          Print(L"Invalid value for %s: %s\n", Argument, ShellParameters->Argv[Index]);
+          return Status;
+      }
+      Options->StartLba = StartLbaValue;
       Options->HasStart = TRUE;
       continue;
     }
 
     if (StrCmp (Argument, L"-n") == 0 || StrCmp (Argument, L"--count") == 0) {
+      UINT64 BlockCountValue;
       if (++Index >= ShellParameters->Argc) {
         Print (L"Missing value for %s.\n", Argument);
         return EFI_INVALID_PARAMETER;
       }
-      Options->BlockCount = StrDecimalToUint64 (ShellParameters->Argv[Index]);
+      Status = ParseUint64String (ShellParameters->Argv[Index], &BlockCountValue);
+      if (EFI_ERROR(Status)) {
+        Print(L"Invalid value for %s: %s\n", Argument, ShellParameters->Argv[Index]);
+        return Status;
+      }
+      Options->BlockCount = BlockCountValue;
       Options->HasCount = TRUE;
       continue;
     }
@@ -848,7 +888,13 @@ DumpRange (
     Print (L"Dump size %Lu bytes is too large for this platform.\n", TotalBytes);
     return EFI_INVALID_PARAMETER;
   }
-
+  Print (
+    L"Dumping device %u: start LBA 0x%Lx, count %Lu (%Lu bytes)\n",
+    Options->DeviceIndex,
+    Options->StartLba,
+    Options->BlockCount,
+    TotalBytes
+  );
   if (Options->AllBlocks && Options->PromptForAll) {
     Print (
       L"This will create '%s' containing %Lu bytes (%Lu MiB). Continue? (Y/N) ",
@@ -936,9 +982,15 @@ DumpRange (
       goto Done;
     }
 
+    Print (
+      L"\rRead 0x%Lx (%Lu/%Lu blocks)",
+      CurrentLba,
+      Options->BlockCount - RemainingBlocks + ChunkBlocks,
+      Options->BlockCount
+    );
+
     CurrentLba += ChunkBlocks;
     RemainingBlocks -= ChunkBlocks;
-    Print (L"\rRead 0x%lx / 0x%lx blocks", CurrentLba, Options->StartLba + Options->BlockCount);
   }
 
   Print (L"\nDump complete: %Lu bytes written.\n", TotalBytes);
@@ -1067,7 +1119,7 @@ UefiMain (
   EFI_DEVICE_PATH_PROTOCOL *ParentPath;
   EFI_DEVICE_PATH_PROTOCOL *CandidatePath;
   CHAR16 *OutputPath;
-  UINTN Index;
+  UINTN ChildIndex;
   UINTN ChildCount;
   EFI_STATUS BulkStatus;
 
@@ -1137,32 +1189,33 @@ UefiMain (
       return Status;
     }
 
-    for (Index = 0; Index < HandleCount; ++Index) {
-      if (Index == Options.DeviceIndex) {
+    for (ChildIndex = 0; ChildIndex < HandleCount; ++ChildIndex) {
+      if (ChildIndex == Options.DeviceIndex) {
         continue;
       }
 
-      CandidatePath = DevicePathFromHandle (Handles[Index]);
+      CandidatePath = DevicePathFromHandle (Handles[ChildIndex]);
       if (!IsChildDevicePath (ParentPath, CandidatePath)) {
         continue;
       }
 
-      OutputPath = BuildBulkOutputPath (Options.OutputDirectory, Index);
+      OutputPath = BuildBulkOutputPath (Options.OutputDirectory, ChildIndex);
       if (OutputPath == NULL) {
-        Print (L"Unable to allocate output path for blk%u.\n", Index);
+        Print (L"Unable to allocate output path for blk%u.\n", ChildIndex);
         BulkStatus = EFI_OUT_OF_RESOURCES;
         continue;
       }
 
-      Status = gBS->HandleProtocol (Handles[Index], &gEfiBlockIoProtocolGuid, (VOID **)&BlockIo);
+      Status = gBS->HandleProtocol (Handles[ChildIndex], &gEfiBlockIoProtocolGuid, (VOID **)&BlockIo);
       if (EFI_ERROR (Status)) {
-        Print (L"Unable to open blk%u: %r\n", Index, Status);
+        Print (L"Unable to open device %u: %r\n", ChildIndex, Status);
         FreePool (OutputPath);
         BulkStatus = Status;
         continue;
       }
 
       ChildOptions = Options;
+      ChildOptions.DeviceIndex = ChildIndex;
       ChildOptions.AllBlocks = TRUE;
       ChildOptions.PromptForAll = FALSE;
       ChildOptions.OutputPath = OutputPath;
