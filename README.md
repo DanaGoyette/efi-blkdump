@@ -164,7 +164,7 @@ Parameter             |Short| Usage
 `--device <index>`    |`-d` | select a device by the right-aligned number shown by `-l`.
 `--start <lba>`       |`-s` | starting LBA; decimal or `0x` hexadecimal is accepted.
 `--blocks <blocks>`   |`-n` | number of blocks to read; defaults to 128.
-`--chunk <blocks>`    |     | maximum number of blocks to read per ReadBlocks() call.
+`--chunk <blocks>`    |     | maximum number of blocks to read per ReadBlocks() call; defaults to 1.
 `--output <path>`     |`-o` | filesystem path for the output file. Regular file only.
 `--all-devices <dir>` |     | with `-d`, dump each child handle as `blkN.bin`.
 `--overwrite`         |     | replace existing output files without prompting.
@@ -174,7 +174,8 @@ Parameter             |Short| Usage
 
 - The utility deliberately excludes any ability to write directly to block devices.
 - The chosen output path must be a regular file, not a directory or a block device.
-- Reads are currently limited to 1 block at a time, to work around a device's read size limits issues
+- The default read chunk size is 1 block for maximum compatibility with firmware
+  that rejects otherwise-valid multi-block reads.
 
 ## Development note
 
