@@ -1,4 +1,4 @@
-Devices:
+﻿Devices:
    0: whole disk, RW, 100 GiB, block size 512 B
       path: PciRoot(0x0)/Pci(0x1,0x2)/Pci(0x0,0x0)/NVMe(0x1,69-58-63-45-01-75-A0-00)
          2: partition, RW, 1 GiB
@@ -25,3 +25,11 @@ Devices:
             path: HD(4,GPT,48253942-5BE6-438D-9976-F48044199436)
         12: partition, RW, 1.1 GiB
             path: HD(5,GPT,C944AF72-199A-4668-A067-E62520E9A8F9)
+  13: whole disk, RO, 14.3 MiB, block size 2 KiB, removable
+      path: PciRoot(0x0)/Pci(0x2,0x2)/Pci(0x0,0x0)/Pci(0x2,0x0)/Pci(0x0,0x0)/USB(0x0,0x0)/USB(0x3,0x0)
+        14: partition, RO, 21.1 MiB
+            path: CDROM(0x0)
+  15: whole disk, RW, 1.8 TiB, block size 512 B
+      path: PciRoot(0x0)/Pci(0x2,0x1)/Pci(0x0,0x0)/Pci(0xD,0x0)/Pci(0x0,0x0)/Sata(0x0,0xFFFF,0x0)
+        16: partition, RW, 1.8 TiB
+            path: HD(1,MBR,0xF452BC6D)

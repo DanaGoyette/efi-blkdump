@@ -16,6 +16,11 @@
 #define MAX_READ_BYTES     (1024U * 1024U)
 #define BLKDUMP_BUILD_DATE __DATE__ " " __TIME__
 
+// Use single-block reads by default for maximum compatibility.
+#define DEFAULT_CHUNK_SIZE 1
+// Some firmware rejects otherwise-valid multi-block ReadBlocks() requests.
+// The Surface Pro 11 returns EFI_NOT_FOUND for some multi-block reads that should be valid.
+
 typedef enum {
   OverwritePrompt,
   OverwriteExisting,
@@ -35,12 +40,14 @@ memcpy (
 typedef struct {
   UINTN        DeviceIndex;
   UINT64       StartLba;
-  UINT64       BlockCount;
+  UINTN        BlockCount;
+  UINTN        ChunkSize;
   CONST CHAR16 *OutputPath;
   CONST CHAR16 *OutputDirectory;
   BOOLEAN      HasDevice;
   BOOLEAN      HasStart;
-  BOOLEAN      HasCount;
+  BOOLEAN      HasBlockCount;
+  BOOLEAN      HasChunkSize;
   BOOLEAN      AllBlocks;
   BOOLEAN      AllDevices;
   BOOLEAN      PauseListing;
@@ -161,6 +168,7 @@ ParseOptions (
 
   ZeroMem (Options, sizeof (*Options));
   Options->StartLba = 0;
+  Options->ChunkSize = DEFAULT_CHUNK_SIZE;
   Options->BlockCount = MAX_BUFFER_BLOCKS;
   Options->PromptForAll = TRUE;
   Options->OverwriteMode = OverwritePrompt;
@@ -218,7 +226,7 @@ ParseOptions (
       continue;
     }
 
-    if (StrCmp (Argument, L"-n") == 0 || StrCmp (Argument, L"--count") == 0) {
+    if (StrCmp (Argument, L"-n") == 0 || StrCmp (Argument, L"--blocks") == 0) {
       UINT64 BlockCountValue;
       if (++Index >= ShellParameters->Argc) {
         Print (L"Missing value for %s.\n", Argument);
@@ -229,8 +237,32 @@ ParseOptions (
         Print(L"Invalid value for %s: %s\n", Argument, ShellParameters->Argv[Index]);
         return Status;
       }
-      Options->BlockCount = BlockCountValue;
-      Options->HasCount = TRUE;
+      if (BlockCountValue > MAX_UINTN) {
+        Print (L"Block count is too large for this platform.\n");
+        return EFI_INVALID_PARAMETER;
+      }
+      Options->BlockCount = (UINTN)BlockCountValue;
+      Options->HasBlockCount = TRUE;
+      continue;
+    }
+
+    if (StrCmp (Argument, L"-c") == 0 || StrCmp (Argument, L"--chunk") == 0) {
+      UINT64 ChunkSizeValue;
+      if (++Index >= ShellParameters->Argc) {
+        Print (L"Missing value for %s.\n", Argument);
+        return EFI_INVALID_PARAMETER;
+      }
+      Status = ParseUint64String (ShellParameters->Argv[Index], &ChunkSizeValue);
+      if (EFI_ERROR(Status)) {
+        Print(L"Invalid value for %s: %s\n", Argument, ShellParameters->Argv[Index]);
+        return Status;
+      }
+      if (ChunkSizeValue > MAX_UINTN) {
+        Print (L"Chunk size is too large for this platform.\n");
+        return EFI_INVALID_PARAMETER;
+      }
+      Options->ChunkSize = (UINTN)ChunkSizeValue;
+      Options->HasChunkSize = TRUE;
       continue;
     }
 
@@ -286,8 +318,8 @@ ParseOptions (
     return EFI_INVALID_PARAMETER;
   }
 
-  if (Options->AllBlocks && (Options->HasStart || Options->HasCount)) {
-    Print (L"--all cannot be combined with --start or --count.\n");
+  if (Options->AllBlocks && (Options->HasStart || Options->HasBlockCount)) {
+    Print (L"--all cannot be combined with --start or --blocks.\n");
     return EFI_INVALID_PARAMETER;
   }
 
@@ -302,8 +334,8 @@ ParseOptions (
   }
 
   if (Options->AllDevices &&
-      (Options->HasStart || Options->HasCount || Options->HasOutput)) {
-    Print (L"--all-devices cannot be combined with --start, --count, or --output.\n");
+      (Options->HasStart || Options->HasBlockCount || Options->HasOutput)) {
+    Print (L"--all-devices cannot be combined with --start, --blocks, or --output.\n");
     return EFI_INVALID_PARAMETER;
   }
 
@@ -955,10 +987,8 @@ DumpRange (
   CurrentLba = Options->StartLba;
   RemainingBlocks = Options->BlockCount;
   while (RemainingBlocks > 0) {
-    ChunkBlocks = (RemainingBlocks > BufferBlocks) ? BufferBlocks : (UINTN) RemainingBlocks;
-    if (ChunkBlocks > 1) {
-      ChunkBlocks = 1;
-    }
+    ChunkBlocks = MIN ((UINTN) RemainingBlocks, BufferBlocks);
+    ChunkBlocks = MIN (ChunkBlocks, Options->ChunkSize);
     WriteCount = ChunkBlocks * BlockIo->Media->BlockSize;
 
     Status = BlockIo->ReadBlocks (
@@ -969,13 +999,13 @@ DumpRange (
                          AlignedBuffer
                          );
     if (EFI_ERROR (Status)) {
-      Print (L"Read failed at LBA 0x%lx: %r\n", CurrentLba, Status);
+      Print (L"\nRead failed at LBA 0x%lx: %r\n", CurrentLba, Status);
       goto Done;
     }
 
     Status = gEfiShellProtocol->WriteFile (OutputFile, &WriteCount, AlignedBuffer);
     if (EFI_ERROR (Status) || WriteCount != ChunkBlocks * BlockIo->Media->BlockSize) {
-      Print (L"Write failed at LBA 0x%lx: %r\n", CurrentLba, Status);
+      Print (L"\nWrite failed at LBA 0x%lx: %r\n", CurrentLba, Status);
       if (!EFI_ERROR (Status)) {
         Status = EFI_DEVICE_ERROR;
       }

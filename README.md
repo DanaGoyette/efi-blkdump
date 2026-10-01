@@ -155,19 +155,20 @@ unrelated block devices are skipped. The output directory must already exist.
 
 ### Options
 
-Parameter         |Short| Usage
-------------------|-----|-------------------------------------
-`--version`       |     | print the embedded build timestamp and exit.
-`--list`          |`-l` | enumerate block devices and exit.
-`--verbose`       |`-v` | with `--list`, show raw media details and full device paths.
-`--break`         |`-b` | print the list output one page at a time; press q to stop.
-`--device <index>`|`-d` | select a device by the right-aligned number shown by `-l`.
-`--start <lba>`   |`-s` | starting LBA; decimal or `0x` hexadecimal is accepted.
-`--count <blocks>`|`-n` | number of blocks to read; defaults to 128.
-`--output <path>` |`-o` | filesystem path for the output file. Regular file only.
-`--all-devices <dir>`  || with `-d`, dump each child handle as `blkN.bin`.
-`--overwrite`     |     | replace existing output files without prompting.
-`--no-overwrite`  |     | skip existing output files without reading their source handles.
+Parameter             |Short| Usage
+----------------------|-----|-------------------------------------
+`--version`           |     | print the embedded build timestamp and exit.
+`--list`              |`-l` | enumerate block devices and exit.
+`--verbose`           |`-v` | with `--list`, show raw media details and full device paths.
+`--break`             |`-b` | print the list output one page at a time; press q to stop.
+`--device <index>`    |`-d` | select a device by the right-aligned number shown by `-l`.
+`--start <lba>`       |`-s` | starting LBA; decimal or `0x` hexadecimal is accepted.
+`--blocks <blocks>`   |`-n` | number of blocks to read; defaults to 128.
+`--chunk <blocks>`    |     | maximum number of blocks to read per ReadBlocks() call.
+`--output <path>`     |`-o` | filesystem path for the output file. Regular file only.
+`--all-devices <dir>` |     | with `-d`, dump each child handle as `blkN.bin`.
+`--overwrite`         |     | replace existing output files without prompting.
+`--no-overwrite`      |     | skip existing output files without reading their source handles.
 
 ## Safety notes
 
