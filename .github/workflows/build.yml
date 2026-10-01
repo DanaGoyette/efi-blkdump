@@ -2,15 +2,18 @@ name: Build EFI applications
 
 on:
   push:
+    tags:
+      - 'v*'
   pull_request:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-24.04
+
     steps:
       - name: Check out project
         uses: actions/checkout@v7
@@ -67,3 +70,13 @@ jobs:
           archive: false
           if-no-files-found: error
           retention-days: 7
+
+      - name: Upload assets to GitHub release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "$GITHUB_REF_NAME" \
+            Artifacts/BlkDump-x64.efi#BlkDump-x64.efi \
+            Artifacts/BlkDump-aarch64.efi#BlkDump-aarch64.efi \
+            --clobber
