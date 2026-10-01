@@ -54,9 +54,9 @@ build -p BlkDumpPkg/BlkDumpPkg.dsc \
 
 output="$edk2_dir/Build/BlkDumpPkg/${build_target}_${toolchain}/${architecture}/BlkDump/BlkDump/OUTPUT/BlkDump.efi"
 if [[ "$build_target" == DEBUG ]]; then
-  artifact="$script_dir/Artifacts/BlkDump-${output_architecture,,}-debug.efi"
+  artifact="$script_dir/Artifacts/blkdump-${output_architecture,,}-debug.efi"
 else
-  artifact="$script_dir/Artifacts/BlkDump-${output_architecture,,}.efi"
+  artifact="$script_dir/Artifacts/blkdump-${output_architecture,,}.efi"
 fi
 mkdir -p "$script_dir/Artifacts"
 cp "$output" "$artifact"

@@ -60,7 +60,7 @@ jobs:
       - name: Upload X64 release EFI
         uses: actions/upload-artifact@v7
         with:
-          path: Artifacts/BlkDump-x64.efi
+          path: Artifacts/blkdump-x64.efi
           archive: false
           if-no-files-found: error
           retention-days: 7
@@ -68,7 +68,7 @@ jobs:
       - name: Upload AARCH64 release EFI
         uses: actions/upload-artifact@v7
         with:
-          path: Artifacts/BlkDump-aarch64.efi
+          path: Artifacts/blkdump-aarch64.efi
           archive: false
           if-no-files-found: error
           retention-days: 7
@@ -79,6 +79,6 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release upload "$GITHUB_REF_NAME" \
-            Artifacts/BlkDump-x64.efi#BlkDump-x64.efi \
-            Artifacts/BlkDump-aarch64.efi#BlkDump-aarch64.efi \
+            Artifacts/blkdump-x64.efi#blkdump-x64.efi \
+            Artifacts/blkdump-aarch64.efi#blkdump-aarch64.efi \
             --clobber
